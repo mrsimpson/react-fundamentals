@@ -10,7 +10,7 @@ function SelectLanguage({ activeLanguage, onSelect }) {
                 <li
                     key={language}
                     className={activeLanguage === language ? 'active' : 'inactive'}
-                    onClick={onSelect.bind(this, language)}>
+                    onClick={onSelect.bind(null, language)}>
                     {language}
                 </li>)
             )}
