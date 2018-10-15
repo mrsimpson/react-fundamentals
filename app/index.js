@@ -1,19 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
-
+import { App } from './components/App';
 require('./index.css');
 
-class App extends Component {
-    render() {
-        return (
-            <div>
-                Hello world!
-            </div>
-        );
-    }
-}
-
 render(
-    <App />,
+    <App name='Dummy'/>,
     document.getElementById('app'),
 );
