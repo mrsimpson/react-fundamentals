@@ -4,10 +4,16 @@ body {
 
 ul {
     margin: 0;
+    padding: 0px;
 }
 
 li {
     list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }
 
 .container {
@@ -26,6 +32,127 @@ li {
     font-weight: bold;
 }
 
-.languages li.active {
+.active {
     color: red;
+}
+
+.repos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.repo-grid-item {
+    margin: 20px;
+    text-align: center;
+    max-width: 150px;
+}
+
+.avatar {
+    width: 150px;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+.repo-factsheet {
+    margin-bottom: 10px;
+}
+
+.repo-grid-item .rank {
+    font-size: 20px;
+    margin: 10px;
+}
+
+.repo-factsheet .name {
+    font-weight: bold;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.nav li {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+}
+
+.row.battle {
+    max-width: 1000px;;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    align-items: center;
+}
+
+.button {
+    color: #e6e6e6;
+    background: #0a0a0a;
+    border: none;
+    font-size: 16px;
+    border-radius: 3px;
+    width: 200px;
+    text-align: center;
+    display: block;
+    padding: 7px 0;
+    margin: 10px auto;
+  }
+
+.button:hover:enabled {
+    background: linear-gradient(#1a1a1a,#0a0a0a);
+    color: #fff;
+    text-decoration: none;
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+
+.button:disabled {
+    background: linear-gradient(#cccccc,#cfcfcf);
+    color: #fff;
+    text-decoration: none;
+}
+
+.column input.error {
+    border-color: red;
+}
+
+.column input {
+    border-radius: 3px;
+    margin: 10px 0;
+    padding: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.43);
+    font-size: 16px;
+    width: 80%;
+}
+
+.column label, .header {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 200;
+}
+
+button.link {
+    border: none;
+    padding: 0;
+    background: transparent;
+    color: red;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.home {
+    padding-top: 100px;
 }
