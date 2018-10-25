@@ -9,8 +9,8 @@ function PlayerFactsheet({
   const handleReset = onReset.bind(null, id);
   return (
     <form className="player-factsheet column">
-      <div className="header">{username}</div>
       <img alt={`Avatar for ${username}`} className="avatar" src={avatarUrl} />
+      <div className="username">{`@${username}`}</div>
       <button className="link" type="button" onClick={handleReset}>reset</button>
     </form>
   );

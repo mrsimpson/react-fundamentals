@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import GithubApi from '../utils/GithubApi';
+import Loader from './Loader';
 
 function SelectLanguage({ activeLanguage, onSelect }) {
   const languages = ['All', 'Javascript', 'ABAP', 'Java', 'Ruby', 'CSS', 'Python'];
@@ -106,7 +107,7 @@ export default class Popular extends Component {
         <SelectLanguage activeLanguage={activeLanguage} onSelect={this.updateLanguage} />
         {reposLoaded
           ? <ReposGrid repos={repos} />
-          : <p>LOADING</p>
+          : <Loader />
         }
       </div>
     );

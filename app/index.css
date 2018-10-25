@@ -17,7 +17,7 @@ a {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -148,11 +148,35 @@ button.link {
     padding: 0;
     background: transparent;
     color: red;
+    margin: 10px;
     font-size: 12px;
     font-weight: bold;
-    font-style: italic;
+}
+
+button.link:hover {
+    cursor: pointer;
 }
 
 .home {
     padding-top: 100px;
+}
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid red; /* Blue */
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+    margin: 100px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.player-factsheet .username {
+    font-size: 30px;
+    font-weight: bold;
 }
