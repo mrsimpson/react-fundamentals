@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import _ from 'lodash';
+import { debounce } from 'lodash';
 import GithubApi from '../utils/GithubApi';
 
 export default class Player extends Component {
@@ -22,14 +22,17 @@ export default class Player extends Component {
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.validateUsername = this.validateUsername.bind(this);
-    this.debounceValidateUsername = _.debounce(this.validateUsername, 300);
+    this.debounceValidateUsername = debounce(this.validateUsername, 300);
   }
 
   validateUsername() {
-    this.state.username
-    && GithubApi.isUsernameValid(this.state.username)
-      .then(isValid => this.setState({ isValid }))
-      .catch(() => this.setState({ isValid: false }));
+    const { username } = this.state;
+
+    if (username) {
+      GithubApi.isUsernameValid(username)
+        .then(isValid => this.setState({ isValid }))
+        .catch(() => this.setState({ isValid: false }));
+    }
   }
 
   handleUsernameChange(event) {
@@ -53,11 +56,12 @@ export default class Player extends Component {
   }
 
   render() {
+    const { label, username, isValid } = this.state;
     return (
       <form className="column player" onSubmit={this.handleSubmit}>
-        <label className="header" htmlFor="username">{this.state.label}</label>
-        <input id="username" placeholder="username" className={!this.state.isValid && this.state.username ? 'error' : ''} value={this.state.username} autoComplete="off" onChange={this.handleUsernameChange} />
-        <button type="submit" className="button" disabled={!this.state.isValid}>
+        <label className="header" htmlFor="username">{label}</label>
+        <input id="username" placeholder="username" className={!isValid && username ? 'error' : ''} value={username} autoComplete="off" onChange={this.handleUsernameChange} />
+        <button type="submit" className="button" disabled={!isValid}>
           Submit
         </button>
       </form>

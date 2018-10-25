@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import Player from './Player';
 import GithubApi from '../utils/GithubApi';
 
-function PlayerFactsheet(props) {
-  const handleReset = props.onReset.bind(null, props.id);
+function PlayerFactsheet({
+  id, username, avatarUrl, onReset
+}) {
+  const handleReset = onReset.bind(null, id);
   return (
     <form className="player-factsheet column">
-      <div className="header">{props.username}</div>
-      <img className="avatar" src={props.avatarUrl} />
+      <div className="header">{username}</div>
+      <img alt={`Avatar for ${username}`} className="avatar" src={avatarUrl} />
       <button className="link" type="button" onClick={handleReset}>reset</button>
     </form>
   );
@@ -51,10 +52,14 @@ export default class Battle extends Component {
   }
 
   render() {
+    const {
+      playerOneUsername, playerOneAvatarUrl, playerTwoUsername, playerTwoAvatarUrl
+    } = this.state;
+
     return (
       <div>
         <div className="row battle">
-          {!this.state.playerOneUsername
+          {!playerOneUsername
             ? (
               <Player
                 id="playerOne"
@@ -64,14 +69,14 @@ export default class Battle extends Component {
             )
             : (
               <PlayerFactsheet
-                username={this.state.playerOneUsername}
-                avatarUrl={this.state.playerOneAvatarUrl}
+                username={playerOneUsername}
+                avatarUrl={playerOneAvatarUrl}
                 id="playerOne"
                 onReset={this.handlePlayerReset}
               />
             )
         }
-          {!this.state.playerTwoUsername
+          {!playerTwoUsername
             ? (
               <Player
                 id="playerTwo"
@@ -81,8 +86,8 @@ export default class Battle extends Component {
             )
             : (
               <PlayerFactsheet
-                username={this.state.playerTwoUsername}
-                avatarUrl={this.state.playerTwoAvatarUrl}
+                username={playerTwoUsername}
+                avatarUrl={playerTwoAvatarUrl}
                 id="playerTwo"
                 onReset={this.handlePlayerReset}
               />
@@ -90,7 +95,7 @@ export default class Battle extends Component {
         }
         </div>
         <div className="row">
-          <button type="button" className="button" disabled={!this.state.playerOneUsername || !this.state.playerTwoUsername}>Battle!</button>
+          <button type="button" className="button" disabled={!playerOneUsername || !playerTwoUsername}>Battle!</button>
         </div>
       </div>
     );

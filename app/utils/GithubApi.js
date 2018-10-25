@@ -1,5 +1,6 @@
 export default class GithubApi {
-  static async get(url, params = {}) {
+  static async get(url, parameters = {}) {
+    const params = parameters;
     params.method = 'GET';
     if (process.env.GITHUB_API_KEY) {
       params.headers = { Authorization: `token ${process.env.GITHUB_API_KEY}` };
