@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
+import { Link } from 'react-router-dom';
 import Player from './Player';
 import GithubApi from '../utils/GithubApi';
 
@@ -54,6 +55,8 @@ export default class Battle extends Component {
   }
 
   render() {
+    const { url } = this.props.match;
+
     const {
       playerOneUsername, playerOneAvatarUrl, playerTwoUsername, playerTwoAvatarUrl
     } = this.state;
@@ -97,7 +100,13 @@ export default class Battle extends Component {
         }
         </div>
         <div className="row">
-          <button type="button" className="button" disabled={!playerOneUsername || !playerTwoUsername}>Battle!</button>
+          <Link
+            className="button"
+            style={{ display: (!playerOneUsername || !playerTwoUsername) ? 'none' : '' }}
+            to={`${url}/result?playerOne=${playerOneUsername}&playerTwo=${playerTwoUsername}`}
+          >
+              Battle!
+          </Link>
         </div>
       </div>
     );
