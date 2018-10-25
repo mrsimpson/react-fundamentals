@@ -33,6 +33,8 @@ export default class Battle extends Component {
       playerTwoAvatarUrl: '',
     };
 
+    this.api = new GithubApi();
+
     this.handlePlayerSelected = this.handlePlayerSelected.bind(this);
     this.handlePlayerReset = this.handlePlayerReset.bind(this);
   }
@@ -40,7 +42,7 @@ export default class Battle extends Component {
   async handlePlayerSelected(id, username) {
     const newState = {};
     newState[`${id}Username`] = username;
-    newState[`${id}AvatarUrl`] = await GithubApi.getUserAvatarUrl(username);
+    newState[`${id}AvatarUrl`] = await this.api.getUserAvatarUrl(username);
     this.setState(newState);
   }
 

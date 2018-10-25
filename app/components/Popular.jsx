@@ -72,6 +72,8 @@ export default class Popular extends Component {
       repos: []
     };
 
+    this.api = new GithubApi();
+
     // Make sure all state modifying functions access the proper THIS context
     this.updateLanguage = this.updateLanguage.bind(this);
     this.updateRepos = this.updateRepos.bind(this);
@@ -95,7 +97,7 @@ export default class Popular extends Component {
       reposLoaded: false
     });
 
-    const response = await GithubApi.fetchPopularRepos(language);
+    const response = await this.api.fetchPopularRepos(language);
     this.updateRepos(response.items || []);
   }
 

@@ -23,13 +23,15 @@ export default class Player extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.validateUsername = this.validateUsername.bind(this);
     this.debounceValidateUsername = debounce(this.validateUsername, 300);
+
+    this.api = new GithubApi();
   }
 
   validateUsername() {
     const { username } = this.state;
 
     if (username) {
-      GithubApi.isUsernameValid(username)
+      this.api.isUsernameValid(username)
         .then(isValid => this.setState({ isValid }))
         .catch(() => this.setState({ isValid: false }));
     } else {
