@@ -6,13 +6,17 @@ import GithubApi from '../utils/GithubApi';
 function SelectLanguage({ activeLanguage, onSelect }) {
   const languages = ['All', 'Javascript', 'ABAP', 'Java', 'Ruby', 'CSS', 'Python'];
 
+  function onClickLanguage(language) {
+    return onSelect.bind(null, language);
+  }
+
   return (
     <ul className="languages">
       {languages.map(language => (
         <li key={language}>
           <Link
             to={`#${language}`}
-            onClick={onSelect.bind(null, language)}
+            onClick={onClickLanguage(language)}
             className={activeLanguage === language ? 'active' : 'inactive'}
           >
             {language}
@@ -73,7 +77,8 @@ export default class Popular extends Component {
   }
 
   async componentDidMount() {
-    await this.updateLanguage(this.state.activeLanguage);
+    const { activeLanguage } = this.state;
+    await this.updateLanguage(activeLanguage);
   }
 
   updateRepos(repos) {
@@ -94,11 +99,13 @@ export default class Popular extends Component {
   }
 
   render() {
+    const { activeLanguage, reposLoaded, repos } = this.state;
+
     return (
       <div>
-        <SelectLanguage activeLanguage={this.state.activeLanguage} onSelect={this.updateLanguage} />
-        {this.state.reposLoaded
-          ? <ReposGrid repos={this.state.repos} />
+        <SelectLanguage activeLanguage={activeLanguage} onSelect={this.updateLanguage} />
+        {reposLoaded
+          ? <ReposGrid repos={repos} />
           : <p>LOADING</p>
         }
       </div>
