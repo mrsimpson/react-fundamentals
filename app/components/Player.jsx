@@ -32,6 +32,8 @@ export default class Player extends Component {
       GithubApi.isUsernameValid(username)
         .then(isValid => this.setState({ isValid }))
         .catch(() => this.setState({ isValid: false }));
+    } else {
+      this.setState({ isValid: false });
     }
   }
 

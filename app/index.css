@@ -84,8 +84,8 @@ a {
     align-content: space-around;
 }
 
-.row.battle {
-    max-width: 1000px;;
+.battle .row {
+    max-width: 1000px;
 }
 
 .column {

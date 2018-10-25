@@ -57,8 +57,8 @@ export default class Battle extends Component {
     } = this.state;
 
     return (
-      <div>
-        <div className="row battle">
+      <div className="battle">
+        <div className="row">
           {!playerOneUsername
             ? (
               <Player
