@@ -17,19 +17,20 @@
     "react-native"
   ],
   "extends": [
-    "airbnb",
+    "airbnb"
   ],
   "rules": {
     "comma-dangle": 0,
     "react-native/no-unused-styles": 2,
     "react-native/split-platform-components": 2,
     "import/prefer-default-export": "off",
-    "jsx-a11y/label-has-for": "off"
+    "jsx-a11y/label-has-for": "off",
+    "no-plusplus": "off"
   },
   "settings": {
     "react": {
       "pragma": "React",
       "version": "0.14.8"
     }
-  },
+  }
 }
