@@ -85,6 +85,6 @@ export default class GithubApi {
         totalScore: profile.followers * 3 + totalStars
       };
     }));
-    return players.sort((a, b) => a.totalScore < b.totalScore);
+    return players.sort((a, b) => b.totalScore - a.totalScore);
   }
 }
