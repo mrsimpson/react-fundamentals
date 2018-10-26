@@ -4,6 +4,23 @@ import qs from 'qs';
 import Loader from './Loader';
 import GithubApi from '../utils/GithubApi';
 import { PlayerFactsheet } from './Player';
+import { ObjectFactsheetList } from './ObjectFactsheet';
+
+function getFactsheetProps({
+  blog,
+  company,
+  followers,
+  location,
+  public_repos,
+}) {
+  return {
+    Company: company,
+    Location: location,
+    Followers: followers,
+    'Public Repos': public_repos,
+    Blog: blog,
+  };
+}
 
 function PlayerScore({ result, label }) {
   const { profile, totalScore } = result;
@@ -16,7 +33,7 @@ function PlayerScore({ result, label }) {
       >
         <div>{profile.name}</div>
         <h2 className="header">{`Score: ${totalScore}`}</h2>
-        {JSON.stringify(profile, null, 2)}
+        <ObjectFactsheetList o={getFactsheetProps(profile)} />
       </PlayerFactsheet>
     </div>
   );

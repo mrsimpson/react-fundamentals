@@ -180,3 +180,14 @@ button.link:hover {
     font-size: 30px;
     font-weight: bold;
 }
+
+.factsheet li {
+    margin-bottom: 6px;
+}
+.factsheet .value {
+    font-weight: bold;
+}
+
+.factsheet a {
+    color: red;
+}
