@@ -43,7 +43,7 @@ export default class Battle extends Component {
     const boundHandlePlayerReset = id => this.handlePlayerReset.bind(null, id);
 
     return (
-      <div className="battle">
+      <div className="battle content">
         <div className="row">
           {!playerOneUsername
             ? (

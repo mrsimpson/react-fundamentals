@@ -102,7 +102,7 @@ export default class Result extends Component {
     return error
       ? <div>Something went wrong - check usernames</div>
       : (
-        <div className="row">
+        <div className="battle-result content">
           <div className="column">
             <div className="row">
               <div className="column winner">
@@ -118,14 +118,14 @@ export default class Result extends Component {
                 />
               </div>
             </div>
-            <div className="row">
-              <Link
-                className="button"
-                to="/battle"
-              >
-                    Reset
-              </Link>
-            </div>
+          </div>
+          <div className="row">
+            <Link
+              className="button"
+              to="/battle"
+            >
+                          Reset
+            </Link>
           </div>
         </div>
       );

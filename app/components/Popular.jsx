@@ -105,7 +105,7 @@ export default class Popular extends Component {
     const { activeLanguage, reposLoaded, repos } = this.state;
 
     return (
-      <div>
+      <div className="popular content">
         <SelectLanguage activeLanguage={activeLanguage} onSelect={this.updateLanguage} />
         {reposLoaded
           ? <ReposGrid repos={repos} />
