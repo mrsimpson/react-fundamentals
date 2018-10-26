@@ -30,7 +30,7 @@ async function fetchPagedRepos(baseUrl, pages) {
   const repoPages = await Promise.all(repoPageReponses.map(
     repoPageReponse => repoPageReponse.json()
   ));
-  return [].concat(...repoPages);
+  return [].concat(...repoPages); // after resolution, repoPages is an array of arrays
 }
 
 async function getUsersRepositories(username) {
