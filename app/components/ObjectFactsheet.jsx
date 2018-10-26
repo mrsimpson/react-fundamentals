@@ -30,5 +30,7 @@ export function ObjectFactsheetList({ o }) {
 }
 
 ObjectFactsheetList.propTypes = {
-  o: PropTypes.object.isRequired, // eslint-disable-line
+  // the purpose of this method is to be generic
+  // eslint-disable-next-line react/forbid-prop-types
+  o: PropTypes.object.isRequired,
 };
