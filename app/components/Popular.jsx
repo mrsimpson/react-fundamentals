@@ -32,23 +32,37 @@ SelectLanguage.propTypes = {
 };
 
 function RepoGridItem({ repo, index }) {
+  const {
+    full_name: fullName, owner, html_url: htmlUrl, name
+  } = repo;
+  const { avatar_url: avatarUrl, login } = owner;
   return (
-    <li className="repo-grid-item" key={repo.full_name}>
+    <li className="repo-grid-item" key={fullName}>
       <div className="rank">{`# ${index + 1}`}</div>
       <img
         className="avatar"
-        src={repo.owner.avatar_url}
-        alt={`Avatar of ${repo.owner.login}`}
+        src={avatarUrl}
+        alt={`Avatar of ${login}`}
       />
       <ul className="repo-factsheet">
-        <li className="name"><a href={repo.html_url} target="blank">{repo.name}</a></li>
-        <li className="owner">{`@${repo.owner.login}`}</li>
+        <li className="name"><a href={htmlUrl} target="blank">{name}</a></li>
+        <li className="owner">{`@${login}`}</li>
       </ul>
     </li>
   );
 }
+
+const proptypeRepo = PropTypes.shape({
+  full_name: PropTypes.string.isRequired,
+  html_url: PropTypes.string.isRequired,
+  owner: PropTypes.shape({
+    avatar_url: PropTypes.string.isRequired,
+    login: PropTypes.string.isRequired,
+  }).isRequired,
+});
+
 RepoGridItem.propTypes = {
-  repo: PropTypes.object.isRequired,
+  repo: proptypeRepo.isRequired,
   index: PropTypes.number.isRequired,
 };
 
@@ -60,7 +74,7 @@ function ReposGrid({ repos }) {
   );
 }
 ReposGrid.propTypes = {
-  repos: PropTypes.array.isRequired,
+  repos: PropTypes.arrayOf(proptypeRepo).isRequired,
 };
 export default class Popular extends Component {
   constructor(props) {

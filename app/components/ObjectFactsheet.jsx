@@ -30,5 +30,5 @@ export function ObjectFactsheetList({ o }) {
 }
 
 ObjectFactsheetList.propTypes = {
-  o: PropTypes.object.isRequired,
+  o: PropTypes.object.isRequired, // eslint-disable-line
 };

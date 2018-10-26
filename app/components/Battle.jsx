@@ -34,7 +34,7 @@ export default class Battle extends Component {
   }
 
   render() {
-    const { url } = this.props.match;
+    const { url } = this.props.match; // eslint-disable-line
 
     const {
       playerOneUsername, playerOneAvatarUrl, playerTwoUsername, playerTwoAvatarUrl

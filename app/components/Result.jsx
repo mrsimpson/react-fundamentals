@@ -12,27 +12,36 @@ function getFactsheetProps({
   company,
   followers,
   location,
-  public_repos,
+  public_repos: publicRepos,
 }) {
   return {
     Company: company,
     Location: location,
     Followers: followers,
-    'Public Repos': public_repos,
+    'Public Repos': publicRepos,
     Blog: blog,
   };
 }
 
+const propTypeProfile = PropTypes.shape({
+  blog: PropTypes.string.isRequired,
+  company: PropTypes.string,
+  followers: PropTypes.number.isRequired,
+  location: PropTypes.string,
+  public_repos: PropTypes.number.isRequired,
+});
+
 function PlayerScore({ result, label }) {
   const { profile, totalScore } = result;
+  const { name, login, avatar_url: avatarUrl } = profile;
   return (
     <div>
       <h1 className="header">{label}</h1>
       <PlayerFactsheet
-        username={profile.login}
-        avatarUrl={profile.avatar_url}
+        username={login}
+        avatarUrl={avatarUrl}
       >
-        <div>{profile.name}</div>
+        <div>{name}</div>
         <h2 className="header">{`Score: ${totalScore}`}</h2>
         <ObjectFactsheetList o={getFactsheetProps(profile)} />
       </PlayerFactsheet>
@@ -42,7 +51,11 @@ function PlayerScore({ result, label }) {
 
 PlayerScore.propTypes = {
   label: PropTypes.string.isRequired,
-  result: PropTypes.object.isRequired,
+  result: PropTypes.shape({
+    profile: propTypeProfile.isRequired,
+    totalScore: PropTypes.number.isRequired,
+    totalStars: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default class Result extends Component {
