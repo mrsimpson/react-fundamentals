@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import qs from 'qs';
 import Loader from './Loader';
 import GithubApi from '../utils/GithubApi';
@@ -102,23 +103,31 @@ export default class Result extends Component {
       ? <div>Something went wrong - check usernames</div>
       : (
         <div className="row">
-          <div className="column winner">
-            <PlayerScore
-              label="Winner"
-              result={winner}
-            />
-          </div>
-          <div className="column loser">
-            <PlayerScore
-              label="Loser"
-              result={loser}
-            />
+          <div className="column">
+            <div className="row">
+              <div className="column winner">
+                <PlayerScore
+                  label="Winner"
+                  result={winner}
+                />
+              </div>
+              <div className="column loser">
+                <PlayerScore
+                  label="Loser"
+                  result={loser}
+                />
+              </div>
+            </div>
+            <div className="row">
+              <Link
+                className="button"
+                to="/battle"
+              >
+                    Reset
+              </Link>
+            </div>
           </div>
         </div>
       );
   }
 }
-
-/*
-{ "profile": { "login": "b", "id": 31712, "node_id": "MDQ6VXNlcjMxNzEy", "avatar_url": "https://avatars2.githubusercontent.com/u/31712?v=4", "gravatar_id": "", "url": "https://api.github.com/users/b", "html_url": "https://github.com/b", "followers_url": "https://api.github.com/users/b/followers", "following_url": "https://api.github.com/users/b/following{/other_user}", "gists_url": "https://api.github.com/users/b/gists{/gist_id}", "starred_url": "https://api.github.com/users/b/starred{/owner}{/repo}", "subscriptions_url": "https://api.github.com/users/b/subscriptions", "organizations_url": "https://api.github.com/users/b/orgs", "repos_url": "https://api.github.com/users/b/repos", "events_url": "https://api.github.com/users/b/events{/privacy}", "received_events_url": "https://api.github.com/users/b/received_events", "type": "User", "site_admin": false, "name": "Benjamin Black", "company": null, "blog": "http://blog.b3k.us", "location": "Seattle, WA", "email": "b@b3k.us", "hireable": null, "bio": null, "public_repos": 94, "public_gists": 10, "followers": 158, "following": 2, "created_at": "2008-10-29T21:00:03Z", "updated_at": "2018-07-24T19:28:00Z" }, "totalStars": 631, "totalScore": 1105 }
-*/
