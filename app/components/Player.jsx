@@ -3,7 +3,24 @@ import { PropTypes } from 'prop-types';
 import { debounce } from 'lodash';
 import GithubApi from '../utils/GithubApi';
 
-export default class Player extends Component {
+export function PlayerFactsheet({
+  username, avatarUrl, children
+}) {
+  return (
+    <form className="player-factsheet column">
+      <img alt={`Avatar for ${username}`} className="avatar" src={avatarUrl} />
+      <div className="username">{`@${username}`}</div>
+      {children}
+    </form>
+  );
+}
+
+PlayerFactsheet.propTypes = {
+  username: PropTypes.string.isRequired,
+  avatarUrl: PropTypes.string.isRequired,
+};
+
+export class PlayerSelection extends Component {
   static defaultProps = {
     username: '',
   }
@@ -73,7 +90,7 @@ export default class Player extends Component {
   }
 }
 
-Player.propTypes = {
+PlayerSelection.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   username: PropTypes.string,

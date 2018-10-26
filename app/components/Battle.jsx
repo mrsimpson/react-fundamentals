@@ -1,28 +1,7 @@
 import React, { Component } from 'react';
-import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
-import Player from './Player';
+import { PlayerSelection, PlayerFactsheet } from './Player';
 import GithubApi from '../utils/GithubApi';
-
-function PlayerFactsheet({
-  id, username, avatarUrl, onReset
-}) {
-  const handleReset = onReset.bind(null, id);
-  return (
-    <form className="player-factsheet column">
-      <img alt={`Avatar for ${username}`} className="avatar" src={avatarUrl} />
-      <div className="username">{`@${username}`}</div>
-      <button className="link" type="button" onClick={handleReset}>reset</button>
-    </form>
-  );
-}
-
-PlayerFactsheet.propTypes = {
-  username: PropTypes.string.isRequired,
-  avatarUrl: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  onReset: PropTypes.func.isRequired,
-};
 
 export default class Battle extends Component {
   constructor(props) {
@@ -61,14 +40,16 @@ export default class Battle extends Component {
       playerOneUsername, playerOneAvatarUrl, playerTwoUsername, playerTwoAvatarUrl
     } = this.state;
 
+    const boundHandlePlayerReset = id => this.handlePlayerReset.bind(null, id);
+
     return (
       <div className="battle">
         <div className="row">
           {!playerOneUsername
             ? (
-              <Player
+              <PlayerSelection
                 id="playerOne"
-                label="Player One"
+                label="PlayerSelection One"
                 onSubmit={this.handlePlayerSelected}
               />
             )
@@ -76,16 +57,16 @@ export default class Battle extends Component {
               <PlayerFactsheet
                 username={playerOneUsername}
                 avatarUrl={playerOneAvatarUrl}
-                id="playerOne"
-                onReset={this.handlePlayerReset}
-              />
+              >
+                <button className="link" type="button" onClick={boundHandlePlayerReset('playerOne')}>reset</button>
+              </PlayerFactsheet>
             )
         }
           {!playerTwoUsername
             ? (
-              <Player
+              <PlayerSelection
                 id="playerTwo"
-                label="Player Two"
+                label="PlayerSelection Two"
                 onSubmit={this.handlePlayerSelected}
               />
             )
@@ -95,7 +76,9 @@ export default class Battle extends Component {
                 avatarUrl={playerTwoAvatarUrl}
                 id="playerTwo"
                 onReset={this.handlePlayerReset}
-              />
+              >
+                <button className="link" type="button" onClick={boundHandlePlayerReset('playerTwo')}>reset</button>
+              </PlayerFactsheet>
             )
         }
         </div>
@@ -103,7 +86,10 @@ export default class Battle extends Component {
           <Link
             className="button"
             style={{ display: (!playerOneUsername || !playerTwoUsername) ? 'none' : '' }}
-            to={`${url}/result?playerOne=${playerOneUsername}&playerTwo=${playerTwoUsername}`}
+            to={{
+              pathname: `${url}/result`,
+              search: `playerOne=${playerOneUsername}&playerTwo=${playerTwoUsername}`
+            }}
           >
               Battle!
           </Link>

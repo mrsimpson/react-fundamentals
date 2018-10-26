@@ -39,4 +39,11 @@ export default class GithubApi {
       return false;
     }
   }
+
+  async battle(usernames) {
+    return usernames.reduce((result, username) => {
+      result[username] = username;
+      return result;
+    }, {});
+  }
 }
