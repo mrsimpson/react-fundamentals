@@ -1,15 +1,17 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 
 export function ObjectFactsheetList({ o }) {
   return (
     <ul className="factsheet">
       {Object.keys(o).filter(k => !!o[k]).map((k) => {
         const value = o[k];
-        console.log(value);
         const isLink = value && typeof value === 'string' && value.match('http.*');
 
         return (
-          <li>
+          <li
+            key={k}
+          >
             {
                 isLink
                   ? <a href={value}>{k}</a>
@@ -26,3 +28,7 @@ export function ObjectFactsheetList({ o }) {
     </ul>
   );
 }
+
+ObjectFactsheetList.propTypes = {
+  o: PropTypes.object.isRequired,
+};
